@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Traffic volume estimation</title>
+    <style>
+        body {
+            background-image: url("https://media.drive.com.au/obj/tx_q:70,rs:auto:1920:1080:1/caradvice/private/jfakbnbzcalnkbsstkja");
+            background-size: cover;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 40px;
+            text-shadow: 2px 2px 5px black;
+        }
+        .box {
+            background-color: rgba(0,0,0,0.6);
+            display: inline-block;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Traffic volume estimation</h1>
+    <div class="box">
+        <h2>{{ prediction_text }}</h2>
+    </div>
+</body>
+</html>

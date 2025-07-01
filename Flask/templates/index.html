@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Traffic Volume Estimation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-image: url("https://cdn.vox-cdn.com/thumbor/vOaRJFfkv7D6I1sMZ3WE3Pn96TM=/0x78:3000x1766/1600x900/cdn.vox-cdn.com/uploads/chorus_image/image/44219366/72499026.0.0.jpg");
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: black;
+    }
+
+    .form-container {
+      margin: 40px;
+      width: 500px;
+      color: black;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    label {
+      width: 140px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 200px; /* reduced width for more realistic look */
+      padding: 6px 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      width: 200px;
+      padding: 10px;
+      margin-top: 10px;
+      background-color: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2f6ad9;
+    }
+
+    .prediction {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Traffic Volume Estimation</h1>
+
+  <div class="form-container">
+    <form action="{{ url_for('predict') }}" method="post">
+     <h2>Please enter the following details</h2>
+      <div class="form-group">
+        <label for="holiday">Holiday</label>
+        <select id="holiday" name="holiday">
+          <option value="0">None</option>
+          <option value="12">Columbus Day</option>
+          <option value="10">Veterans Day</option>
+          <option value="9">Thanksgiving Day</option>
+          <option value="13">Christmas Day</option>
+          <option value="6">New Years Day</option>
+          <option value="11">Washington’s Birthday</option>
+          <option value="5">Memorial Day</option>
+          <option value="2">Independence Day</option>
+          <option value="1">Independence Day</option>
+          <option value="8">Labor Day</option>
+          <option value="4">Martin Luther King Jr Day</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="temp">temp</label>
+        <input type="number" name="temp" required>
+      </div>
+
+      <div class="form-group">
+        <label for="rain">Rain (0 or 1)</label>
+        <input type="number" name="rain" min="0" max="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="snow">Snow (0 or 1)</label>
+        <input type="number" name="snow" min="0" max="1" required>
+      </div>
+
+      <div class="form-group">
+        <label for="weather">Weather</label>
+        <select id="weather" name="weather">
+          <option value="1">Clouds</option>
+          <option value="0">Clear</option>
+          <option value="3">Rain</option>
+          <option value="6">Drizzle</option>
+          <option value="5">Mist</option>
+          <option value="4">Haze</option>
+          <option value="10">Fog</option>
+          <option value="10">Thunderstorm</option>
+          <option value="8">Snow</option>
+          <option value="9">Squall</option>
+          <option value="7">Smoke</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input type="number" name="year" min="2012" max="2022" required>
+      </div>
+
+      <div class="form-group">
+        <label for="month">Month</label>
+        <input type="number" name="month" min="1" max="12" required>
+      </div>
+
+      <div class="form-group">
+        <label for="day">Day</label>
+        <input type="number" name="day" min="1" max="31" required>
+      </div>
+
+      <div class="form-group">
+        <label for="hours">Hours</label>
+        <input type="number" name="hours" min="0" max="24" required>
+      </div>
+
+      <div class="form-group">
+        <label for="minutes">Minutes</label>
+        <input type="number" name="minutes" min="0" max="59" required>
+      </div>
+
+      <div class="form-group">
+        <label for="seconds">Seconds</label>
+        <input type="number" name="seconds" min="0" max="59" required>
+      </div>
+
+      <button type="submit">Predict</button>
+
+      <div class="prediction">
+        {{ prediction_text }}
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

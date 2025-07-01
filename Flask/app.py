@@ -6,8 +6,8 @@ from flask import Flask, request, render_template
 app = Flask(__name__)
 
 # ✅ Updated paths after folder rename
-model = joblib.load('Flask/model.pkl')
-scale = joblib.load('Flask/encoder.pkl')
+model = joblib.load('model.pkl')
+scale = joblib.load('encoder.pkl')
 
 @app.route('/')
 def home():
